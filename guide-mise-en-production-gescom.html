@@ -1,0 +1,696 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>GESCOM PROJECT — Guide de mise en production</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+@page {
+  size: 720px 1020px;
+  margin: 0;
+}
+:root {
+  --navy: #0F172A;
+  --gold: #D4A72C;
+  --bg: #F8FAFC;
+  --text: #334155;
+  --muted: #64748B;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 720px;
+  background: #F8FAFC;
+  color: var(--text);
+  font-family: 'Inter', 'Liberation Sans', sans-serif;
+  line-break: strict;
+}
+@media screen {
+  html {
+    height: auto;
+    display: flex;
+    justify-content: center;
+    background: #F8FAFC;
+  }
+  body { margin: 20px auto; box-shadow: 0 8px 40px rgba(15,23,42,.18); }
+}
+p, td, li { overflow-wrap: break-word; word-break: break-word; }
+img, svg { max-width: 100%; height: auto; }
+
+/* ============================== COUVERTURE ============================== */
+.cover {
+  width: 720px;
+  height: 1020px;
+  box-sizing: border-box;
+  break-after: page;
+  overflow: hidden;
+  position: relative;
+  background: #F8FAFC;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 64px;
+}
+.cover-band {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 210px;
+  background: var(--navy);
+}
+.cover-brand {
+  position: absolute;
+  top: 44px; left: 64px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.cover-brand .logo-g {
+  width: 52px; height: 52px;
+  border-radius: 12px;
+  background: var(--gold);
+  color: var(--navy);
+  font-weight: 900;
+  font-size: 30px;
+  display: flex; align-items: center; justify-content: center;
+}
+.cover-brand .brand-name {
+  color: #FFFFFF;
+  font-weight: 800;
+  font-size: 19px;
+  letter-spacing: 1px;
+}
+.cover-brand .brand-tag {
+  color: #94A3B8;
+  font-size: 11px;
+  margin-top: 2px;
+}
+.cover-deco-circle {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid rgba(212,167,44,.45);
+}
+.cover-circle-1 { width: 150px; height: 150px; right: 48px; top: 46px; }
+.cover-circle-2 { width: 90px; height: 90px; right: 150px; top: 120px; border-color: rgba(148,163,184,.4); }
+.cover-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 22px;
+  margin-top: 150px;
+}
+.cover-tag span {
+  background: rgba(212,167,44,.16);
+  color: #8A6A12;
+  border: 1px solid rgba(212,167,44,.55);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  padding: 7px 16px;
+  border-radius: 999px;
+}
+.cover-title {
+  font-size: 54px;
+  line-height: 1.06;
+  font-weight: 900;
+  color: var(--navy);
+  letter-spacing: -1px;
+  margin: 0 0 20px 0;
+}
+.cover-title em {
+  font-style: normal;
+  color: var(--gold);
+}
+.cover-sub {
+  font-size: 16.5px;
+  line-height: 1.65;
+  color: var(--muted);
+  max-width: 520px;
+  margin: 0 0 34px 0;
+}
+.cover-parts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  max-width: 100%;
+}
+.cover-part {
+  flex: 1 1 260px;
+  min-width: 240px;
+  max-width: 100%;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-left: 4px solid var(--gold);
+  border-radius: 12px;
+  padding: 16px 18px;
+}
+.cover-part .num {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+.cover-part .lbl {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.4;
+}
+.cover-footer {
+  position: absolute;
+  bottom: 48px; left: 64px; right: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #E2E8F0;
+  padding-top: 18px;
+}
+.cover-footer .ed {
+  font-size: 11.5px;
+  color: var(--muted);
+  letter-spacing: 1px;
+}
+.cover-footer .slogan {
+  font-size: 11.5px;
+  color: var(--navy);
+  font-weight: 700;
+}
+
+/* ============================== CONTENU ============================== */
+.main-content {
+  padding: 56px 64px 44px 64px;
+}
+.chapter-header {
+  break-after: avoid;
+  break-inside: avoid;
+  margin-top: 28px;
+}
+.chapter-header:first-child { margin-top: 0; }
+.section-tag {
+  display: inline-block;
+  background: var(--navy);
+  color: #F5C542;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+.section-title {
+  font-size: 27px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.4px;
+  line-height: 1.2;
+  margin: 0 0 6px 0;
+}
+.divider {
+  width: 56px;
+  height: 4px;
+  background: var(--gold);
+  border-radius: 2px;
+  margin: 10px 0 16px 0;
+}
+.sub-title {
+  break-after: avoid;
+  font-size: 17.5px;
+  font-weight: 800;
+  color: var(--navy);
+  margin: 24px 0 8px 0;
+}
+.body-text {
+  font-size: 12.5px;
+  line-height: 1.72;
+  margin: 0 0 11px 0;
+}
+.body-text strong { color: var(--navy); }
+.lead {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--text);
+  margin: 0 0 12px 0;
+}
+
+.card {
+  break-inside: avoid;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-bottom: 12px;
+}
+.card-title {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--navy);
+  margin: 0 0 7px 0;
+}
+.card p { font-size: 12px; line-height: 1.65; margin: 0 0 8px 0; }
+.card p:last-child { margin-bottom: 0; }
+
+.callout {
+  break-inside: avoid;
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin: 12px 0;
+  border: 1px solid rgba(212,167,44,.5);
+  background: rgba(212,167,44,.10);
+  font-size: 12px;
+  line-height: 1.66;
+}
+.callout b { color: var(--navy); }
+.callout-navy {
+  border: 1px solid rgba(15,23,42,.35);
+  background: rgba(15,23,42,.05);
+}
+
+.steps { counter-reset: etape; margin: 12px 0 4px 0; }
+.step {
+  break-inside: avoid;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 11px;
+  max-width: 100%;
+}
+.step-num {
+  counter-increment: etape;
+  flex-shrink: 0;
+  width: 27px; height: 27px;
+  border-radius: 8px;
+  background: var(--navy);
+  color: #F5C542;
+  font-weight: 800;
+  font-size: 13px;
+  display: flex; align-items: center; justify-content: center;
+}
+.step-num::before { content: counter(etape); }
+.step-body { flex: 1 1 auto; min-width: 0; max-width: 100%; }
+.step-body .st {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 3px 0 3px 0;
+}
+.step-body p {
+  font-size: 12px;
+  line-height: 1.62;
+  margin: 0 0 4px 0;
+}
+.step-body code, .inline-code {
+  font-family: 'DejaVu Sans Mono', 'Liberation Mono', monospace;
+  font-size: 11px;
+  background: rgba(15,23,42,.07);
+  border: 1px solid rgba(15,23,42,.12);
+  border-radius: 5px;
+  padding: 1px 6px;
+  color: var(--navy);
+  overflow-wrap: break-word;
+}
+
+pre.code {
+  break-inside: avoid;
+  background: var(--navy);
+  color: #E2E8F0;
+  border-radius: 12px;
+  padding: 15px 18px;
+  font-family: 'DejaVu Sans Mono', 'Liberation Mono', monospace;
+  font-size: 10.8px;
+  line-height: 1.68;
+  margin: 10px 0 12px 0;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+pre.code .cmt { color: #94A3B8; }
+pre.code .g { color: #F5C542; }
+
+table.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0 14px 0;
+  font-size: 11.5px;
+  table-layout: fixed;
+}
+.tbl thead { display: table-header-group; }
+.tbl th {
+  background: var(--navy);
+  color: #FFFFFF;
+  font-weight: 700;
+  text-align: left;
+  padding: 9px 11px;
+  font-size: 11px;
+  letter-spacing: .4px;
+}
+.tbl td {
+  border-bottom: 1px solid #E2E8F0;
+  padding: 8.5px 11px;
+  vertical-align: top;
+  line-height: 1.55;
+  overflow-wrap: break-word;
+}
+.tbl tr { break-inside: avoid; }
+.tbl td .mono, .tbl th .mono {
+  font-family: 'DejaVu Sans Mono', 'Liberation Mono', monospace;
+  font-size: 10.5px;
+  color: var(--navy);
+  font-weight: 700;
+}
+.tbl tr:nth-child(even) td { background: #FFFFFF; }
+
+.kv-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 12px 0;
+  max-width: 100%;
+}
+.kv {
+  flex: 1 1 180px;
+  min-width: 170px;
+  max-width: 100%;
+  break-inside: avoid;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-top: 3px solid var(--gold);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+.kv .k { font-size: 10.5px; font-weight: 800; letter-spacing: 1.5px; color: var(--gold); margin-bottom: 5px; }
+.kv .v { font-size: 12px; line-height: 1.55; color: var(--text); }
+.kv .v b { color: var(--navy); }
+
+.check-row {
+  break-inside: avoid;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 11px 15px;
+  margin-bottom: 9px;
+}
+.check-box {
+  flex-shrink: 0;
+  width: 19px; height: 19px;
+  border: 2px solid var(--gold);
+  border-radius: 5px;
+  margin-top: 1px;
+}
+.check-txt { font-size: 12px; line-height: 1.55; }
+.check-txt b { color: var(--navy); }
+
+/* ============================== FIN ============================== */
+.ending {
+  width: 720px;
+  height: 1020px;
+  box-sizing: border-box;
+  break-before: page;
+  overflow: hidden;
+  position: relative;
+  background: #F8FAFC;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 64px;
+}
+.ending-inner {
+  background: var(--navy);
+  border-radius: 20px;
+  padding: 46px 44px;
+  color: #E2E8F0;
+}
+.ending-inner .g-mark {
+  width: 46px; height: 46px;
+  border-radius: 11px;
+  background: var(--gold);
+  color: var(--navy);
+  font-weight: 900;
+  font-size: 26px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+}
+.ending-inner h2 {
+  font-size: 27px;
+  font-weight: 900;
+  color: #FFFFFF;
+  line-height: 1.25;
+  margin: 0 0 12px 0;
+}
+.ending-inner h2 em { font-style: normal; color: #F5C542; }
+.ending-inner p { font-size: 12.5px; line-height: 1.7; color: #CBD5E1; margin: 0 0 10px 0; }
+.ending-foot {
+  position: absolute;
+  bottom: 46px; left: 64px; right: 64px;
+  border-top: 1px solid #E2E8F0;
+  padding-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--muted);
+}
+</style>
+</head>
+<body>
+
+<!-- ============================ COUVERTURE ============================ -->
+<div class="cover">
+  <div class="cover-band"></div>
+  <div class="cover-brand">
+    <div class="logo-g">G</div>
+    <div>
+      <div class="brand-name">GESCOM PROJECT</div>
+      <div class="brand-tag">De l'idée au dossier finançable</div>
+    </div>
+  </div>
+  <div class="cover-deco-circle cover-circle-1"></div>
+  <div class="cover-deco-circle cover-circle-2"></div>
+
+  <div class="cover-tag"><span>GUIDE TECHNIQUE</span></div>
+  <h1 class="cover-title">Mettre votre plateforme <em>en production</em></h1>
+  <p class="cover-sub">Deux étapes suffisent pour passer de la démonstration à l'exploitation réelle : activer l'envoi des e-mails transactionnels vers les boîtes de vos utilisateurs, puis déployer la plateforme en ligne sur Vercel avec une base de données persistante.</p>
+  <div class="cover-parts">
+    <div class="cover-part">
+      <div class="num">PARTIE 1</div>
+      <div class="lbl">Activer l'envoi réel des e-mails d'activation et de réinitialisation</div>
+    </div>
+    <div class="cover-part">
+      <div class="num">PARTIE 2</div>
+      <div class="lbl">Déployer sur Vercel avec une base de données persistante (Turso)</div>
+    </div>
+  </div>
+
+  <div class="cover-footer">
+    <div class="ed">ÉDITION NOVEMBRE 2026</div>
+    <div class="slogan">De l'idée au dossier finançable</div>
+  </div>
+</div>
+
+<!-- ============================ CONTENU ============================ -->
+<div class="main-content">
+
+  <!-- ==================== PARTIE 1 ==================== -->
+  <div class="chapter-header">
+    <div class="section-tag">PARTIE 1 · E-MAILS RÉELS</div>
+    <div class="section-title">Activer l'envoi réel des e-mails (SMTP)</div>
+    <div class="divider"></div>
+  </div>
+
+  <p class="lead">Depuis leur création, les comptes utilisateurs de GESCOM PROJECT reçoivent un code d'activation à 6 chiffres, puis parfois un code de réinitialisation de mot de passe. Tant qu'aucun serveur d'envoi n'est configuré, la plateforme fonctionne en <strong>mode démonstration</strong> : le code s'affiche directement à l'écran au lieu de partir dans la boîte mail. Cette partie explique, pas à pas et sans compétence technique particulière, comment brancher un vrai serveur d'envoi pour que <strong>chaque code arrive directement dans la boîte mail de l'utilisateur</strong>.</p>
+
+  <div class="sub-title">1.1 · Comprendre les deux modes d'envoi</div>
+  <p class="body-text">Le <strong>mode démonstration</strong> est celui dans lequel la plateforme se trouve aujourd'hui. À l'inscription, l'écran de vérification affiche le code dans un bandeau et l'administrateur peut le lire dans les journaux du serveur. Ce mode est pratique pour tester l'application sans compte d'envoi, mais il ne convient pas à un usage réel : vos utilisateurs ne reçoivent rien par e-mail.</p>
+  <p class="body-text">Le <strong>mode réel</strong> s'active dès qu'une configuration SMTP complète est enregistrée, soit depuis l'interface d'administration, soit via les variables d'environnement. Le bandeau « mode démonstration » disparaît alors de l'écran de vérification. En mode réel, la sécurité change : le code n'est <strong>jamais</strong> affiché dans l'application, même en cas d'échec d'envoi — l'utilisateur voit simplement un message l'invitant à réessayer, et seule la configuration d'envoi est à corriger côté administration.</p>
+
+  <div class="kv-grid">
+    <div class="kv">
+      <div class="k">MODE DÉMONSTRATION</div>
+      <div class="v">Code affiché à l'écran dans un bandeau, aucun envoi réel. Adapté aux tests internes uniquement.</div>
+    </div>
+    <div class="kv">
+      <div class="k">MODE RÉEL</div>
+      <div class="v">Codes envoyés directement dans la boîte mail de l'utilisateur. E-mail de test disponible avant l'activation.</div>
+    </div>
+  </div>
+
+  <div class="sub-title">1.2 · Où saisir la configuration</div>
+  <p class="body-text">Connectez-vous avec le compte <strong>administrateur</strong> (admin@gescom.pro), ouvrez le menu <strong>Paramètres</strong> puis l'onglet <strong>« E-mail »</strong>. Un formulaire complet vous attend : serveur SMTP, port et chiffrement, identifiant d'envoi, mot de passe d'application, expéditeur affiché, et un champ d'adresse pour l'e-mail de test. L'onglet contient aussi un rappel des valeurs Gmail et Brevo, exactement celles détaillées ci-dessous.</p>
+  <p class="body-text">Conseil important : utilisez d'abord le bouton <strong>« Envoyer l'e-mail de test »</strong> avant d'enregistrer. Si le test arrive dans votre boîte (vérifiez aussi le dossier spam), vous pouvez enregistrer la configuration en toute confiance. Le mot de passe enregistré n'est jamais réaffiché à l'écran ; pour le changer, resaisissez simplement le nouveau dans le champ prévu.</p>
+
+  <div class="sub-title">1.3 · Option A — Gmail (gratuit, rapide, recommandé pour démarrer)</div>
+  <p class="body-text">Un compte Gmail gratuit permet d'envoyer environ 500 messages par jour, largement suffisant pour démarrer. Google exige un « mot de passe d'application » à 16 caractères : votre mot de passe Gmail habituel ne fonctionnera pas. Suivez exactement ces étapes :</p>
+  <div class="steps">
+    <div class="step"><div class="step-num"></div><div class="step-body">
+      <div class="st">Créez (ou choisissez) le compte Google d'envoi</div>
+      <p>Un compte dédié du type <code>no-reply.gescom@gmail.com</code> est recommandé : il sépare clairement les e-mails automatiques d'une boîte personnelle.</p>
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body">
+      <div class="st">Activez la validation en deux étapes</div>
+      <p>Sur <code>myaccount.google.com/security</code>, activez la validation en deux étapes. Cette activation est obligatoire : Google ne propose les mots de passe d'application qu'aux comptes protégés ainsi.</p>
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body">
+      <div class="st">Créez le mot de passe d'application</div>
+      <p>Rendez-vous sur <code>myaccount.google.com/apppasswords</code>, nommez-le « GESCOM PROJECT », puis recopiez les 16 caractères affichés (sans espaces).</p>
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body">
+      <div class="st">Saisissez les valeurs dans l'onglet E-mail</div>
+      <p>Serveur <code>smtp.gmail.com</code>, port <code>465</code> (TLS direct), identifiant = votre adresse Gmail complète, mot de passe = le mot de passe d'application, expéditeur affiché = <code>GESCOM PROJECT &lt;votre.adresse@gmail.com&gt;</code>.</p>
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body">
+      <div class="st">Testez, puis enregistrez</div>
+      <p>Cliquez sur « Envoyer l'e-mail de test », vérifiez la réception (boîte et spam), puis enregistrez la configuration. Le badge « Mode démonstration » disparaît immédiatement.</p>
+    </div></div>
+  </div>
+
+  <div class="sub-title">1.4 · Option B — Brevo (300 e-mails/jour, adapté à la croissance)</div>
+  <p class="body-text">Brevo (anciennement Sendinblue) propose une offre gratuite de 300 e-mails par jour et une meilleure délivrabilité à l'échelle, notamment avec un domaine personnalisé. Créez un compte gratuit sur <code>brevo.com</code>, puis dans le menu <strong>« Expéditeurs &amp; IP »</strong>, ajoutez et validez l'adresse expéditrice que vous souhaitez afficher (Brevo exige qu'un expéditeur soit validé avant tout envoi). Ouvrez ensuite <strong>« SMTP &amp; API »</strong> puis « Clés SMTP » : Brevo affiche vos trois identifiants de connexion SMTP.</p>
+  <p class="body-text">Dans l'onglet E-mail de GESCOM PROJECT, saisissez : serveur <code>smtp-relay.brevo.com</code>, port <code>587</code> (STARTTLS), identifiant = l'e-mail de votre compte Brevo, mot de passe = votre clé SMTP Brevo. Testez l'envoi, puis enregistrez. Avec un domaine personnalisé, ajoutez les enregistrements SPF et DKIM proposés par Brevo dans votre zone DNS : vos e-mails auront alors bien moins de chances d'arriver en spam.</p>
+
+  <div class="callout"><b>Quelle option choisir ?</b> Pour tester dès aujourd'hui sans créer de nouveau service, choisissez Gmail (option A). Pour une exploitation durable avec votre propre domaine et une montée en charge, Brevo (option B) est plus adapté. Les deux fonctionnent exactement de la même façon dans la plateforme — et vous pouvez changer d'option à tout moment en resaisissant une nouvelle configuration.</div>
+
+  <div class="sub-title">1.5 · Option C — Variables d'environnement (pour l'hébergement)</div>
+  <p class="body-text">Sur un serveur ou dans un déploiement automatisé, la configuration peut être fournie par les variables d'environnement plutôt que par l'interface. La configuration enregistrée dans l'interface (base de données) reste <strong>prioritaire</strong> sur les variables : ainsi, l'administrateur peut toujours ajuster l'envoi depuis l'application sans toucher au serveur. Après toute modification du fichier <code>.env</code>, redémarrez l'application.</p>
+  <pre class="code"><span class="cmt"># Fichier .env — envoi réel des e-mails (exemple Gmail)</span>
+<span class="g">SMTP_HOST</span>=smtp.gmail.com
+<span class="g">SMTP_PORT</span>=465
+<span class="g">SMTP_SECURE</span>=true
+<span class="g">SMTP_USER</span>=no-reply.gescom@gmail.com
+<span class="g">SMTP_PASS</span>=abcd1234efgh5678        <span class="cmt">← mot de passe d'application, sans espaces</span>
+<span class="g">SMTP_FROM</span>=GESCOM PROJECT &lt;no-reply.gescom@gmail.com&gt;</pre>
+  <p class="body-text">Tant qu'aucune configuration n'est trouvée (ni interface, ni variables), la plateforme reste volontairement en mode démonstration — l'application ne se bloque jamais, et le parcours d'inscription reste terminable à des fins de test.</p>
+
+  <div class="sub-title">1.6 · Dépannage des envois</div>
+  <p class="body-text">L'e-mail de test affiche l'erreur exacte renvoyée par le serveur d'envoi, ce qui permet presque toujours d'identifier le problème immédiatement. Voici les cas les plus fréquents et leur correction :</p>
+  <table class="tbl">
+    <thead><tr><th style="width:33%">Symptôme</th><th style="width:30%">Cause probable</th><th>Solution</th></tr></thead>
+    <tbody>
+      <tr><td>« Identifiants invalides » ou erreur 535</td><td>Mot de passe Gmail personnel utilisé au lieu du mot de passe d'application</td><td>Créer le mot de passe d'application à 16 caractères et le recopier sans espaces</td></tr>
+      <tr><td>Erreur 534-5.7.9 côté Gmail</td><td>Validation en deux étapes non activée sur le compte Google</td><td>Activer la validation en deux étapes, puis créer le mot de passe d'application</td></tr>
+      <tr><td>Délai d'attente dépassé (timeout)</td><td>Port sortant bloqué par le réseau (587 souvent filtré)</td><td>Basculer sur le port 465 avec TLS direct, ou utiliser un autre réseau</td></tr>
+      <tr><td>E-mails reçus dans le dossier spam</td><td>Expéditeur non validé, SPF/DKIM absents</td><td>Valider l'expéditeur (Brevo) et ajouter les enregistrements SPF/DKIM du domaine</td></tr>
+      <tr><td>Envois refusés après avoir fonctionné</td><td>Quota journalier atteint (Gmail ≈ 500/j, Brevo 300/j)</td><td>Attendre le lendemain ou passer à une offre supérieure</td></tr>
+      <tr><td>« La configuration SMTP est incomplète »</td><td>Serveur, identifiant ou mot de passe manquant</td><td>Compléter les trois champs obligatoires puis relancer le test</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== PARTIE 2 ==================== -->
+  <div class="chapter-header">
+    <div class="section-tag">PARTIE 2 · DÉPLOIEMENT VERCEL</div>
+    <div class="section-title">Déployer GESCOM PROJECT sur Vercel</div>
+    <div class="divider"></div>
+  </div>
+
+  <p class="lead">La plateforme est désormais <strong>prête pour Vercel</strong> : le build de production est validé, les exports PDF, Word, Excel et PowerPoint fonctionnent côté serveur avec des polices standard (aucun fichier de police à installer), et le code de connexion à la base de données gère automatiquement le double mode « fichier local » ou « base hébergée Turso ». Il ne reste qu'à créer la base, renseigner les variables d'environnement et importer le projet.</p>
+
+  <div class="sub-title">2.1 · Ce qui est déjà préparé dans le code</div>
+  <div class="check-row"><div class="check-box"></div><div class="check-txt"><b>Build de production validé.</b> La compilation Next.js 16 s'achève sans erreur (27 pages générées) ; sur Vercel, le client Prisma est généré automatiquement grâce au script <b>postinstall</b> ajouté au projet.</div></div>
+  <div class="check-row"><div class="check-box"></div><div class="check-txt"><b>Adaptateur de base de données intégré.</b> Le fichier <b>src/lib/db.ts</b> bascule automatiquement : tant que DATABASE_URL commence par <b>file:</b>, le SQLite local est utilisé ; dès qu'il commence par <b>libsql://</b>, la connexion passe par l'adaptateur officiel Turso (@prisma/adapter-libsql).</div></div>
+  <div class="check-row"><div class="check-box"></div><div class="check-txt"><b>Exports documentaires compatibles cloud.</b> Les PDF utilisent les polices standard Times (intégrées au générateur) : aucun fichier de police à déployer. Les conventions Times New Roman, corps 12, interligne 1,5 et séparateur de milliers « . » restent identiques en production.</div></div>
+  <div class="check-row"><div class="check-box"></div><div class="check-txt"><b>Modèle de variables fourni.</b> Le fichier <b>.env.example</b> à la racine du projet documente chaque variable attendue, avec des exemples Gmail et Brevo prêts à copier.</div></div>
+
+  <div class="sub-title">2.2 · Créer la base de données persistante (Turso)</div>
+  <p class="body-text">C'est le point technique le plus important : <strong>le système de fichiers de Vercel est éphémère</strong>. Un fichier SQLite déposé sur Vercel serait recréé à chaque redéploiement et vos données (comptes, projets, documents) seraient perdues à chaque mise à jour. La solution retenue — et déjà branchée dans le code — est <strong>Turso</strong>, une base hébergée compatible SQLite avec une offre gratuite généreuse :</p>
+  <div class="steps">
+    <div class="step"><div class="step-num"></div><div class="step-body">
+      <div class="st">Créez le compte et la base</div>
+      <p>Inscrivez-vous sur <code>turso.tech</code> (offre gratuite), puis créez une base nommée <code>gescom</code> depuis le tableau de bord, ou avec la commande <code>turso db create gescom</code>.</p>
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body">
+      <div class="st">Récupérez l'URL et le jeton d'accès</div>
+      <p>Dans le tableau de bord Turso, ouvrez la base : l'URL ressemble à <code>libsql://gescom-votre-org.turso.io</code>. Créez ensuite un jeton (onglet « Tokens » ou commande <code>turso db tokens create gescom</code>).</p>
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body">
+      <div class="st">Créez les tables dans la base</div>
+      <p>Générez le script SQL depuis le projet puis appliquez-le à Turso :</p>
+      <pre class="code">npx prisma migrate diff <span class="g">\</span>
+  --from-empty --to-schema-datamodel prisma/schema.prisma <span class="g">\</span>
+  --script &gt; schema.sql
+
+turso db shell gescom &lt; schema.sql
+<span class="cmt"># ou : collez le contenu de schema.sql dans la console SQL de Turso</span></pre>
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body">
+      <div class="st">Vérifiez la base</div>
+      <p>Dans la console SQL de Turso, la commande <code>SELECT name FROM sqlite_master WHERE type='table';</code> doit lister les tables du projet (User, Project, Task, Document…).</p>
+    </div></div>
+  </div>
+
+  <div class="sub-title">2.3 · Mettre en ligne sur Vercel</div>
+  <div class="steps">
+    <div class="step"><div class="step-num"></div><div class="step-body">
+      <div class="st">Poussez le code sur GitHub</div>
+      <p>Créez un dépôt privé (ex. <code>gescom-project</code>) et poussez le projet. Vercel se synchronisera dessus à chaque mise à jour.</p>
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body">
+      <div class="st">Importez le projet dans Vercel</div>
+      <p>Sur <code>vercel.com</code> (compte gratuit), « Add New… → Project », autorisez GitHub puis sélectionnez le dépôt. Vercel détecte Next.js automatiquement : laissez la commande de build par défaut.</p>
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body">
+      <div class="st">Ajoutez les variables d'environnement</div>
+      <p>Dans « Environment Variables », saisissez les variables du tableau 2.4 (au minimum la base de données), puis lancez <b>Deploy</b>. Le premier déploiement prend 2 à 4 minutes.</p>
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body">
+      <div class="st">Vérifiez la mise en ligne</div>
+      <p>Vercel fournit l'adresse finale <code>https://votre-projet.vercel.app</code>. Ouvrez-la : la page de connexion doit s'afficher, et une inscription de test doit aboutir (voir 2.5).</p>
+    </div></div>
+  </div>
+
+  <div class="sub-title">2.4 · Variables d'environnement à définir sur Vercel</div>
+  <table class="tbl">
+    <thead><tr><th style="width:26%">Variable</th><th style="width:37%">Valeur</th><th>Rôle</th></tr></thead>
+    <tbody>
+      <tr><td><span class="mono">DATABASE_URL</span></td><td><span class="mono">libsql://gescom-votre-org.turso.io</span></td><td>Base de données hébergée (obligatoire — le préfixe libsql:// active le mode Turso)</td></tr>
+      <tr><td><span class="mono">DATABASE_AUTH_TOKEN</span></td><td><span class="mono">eyJhbGciOi…</span></td><td>Jeton d'accès Turso (obligatoire avec l'URL ci-dessus)</td></tr>
+      <tr><td><span class="mono">SMTP_HOST</span><br><span class="mono">SMTP_PORT</span><br><span class="mono">SMTP_SECURE</span><br><span class="mono">SMTP_USER</span><br><span class="mono">SMTP_PASS</span><br><span class="mono">SMTP_FROM</span></td><td>Valeurs de la partie 1</td><td>Envoi réel des e-mails (facultatif ici : la configuration peut aussi se faire plus tard depuis l'interface administrateur, elle est alors enregistrée en base)</td></tr>
+    </tbody>
+  </table>
+  <div class="callout"><b>À retenir :</b> sur Vercel, ne mettez jamais <span style="font-family:'DejaVu Sans Mono',monospace;font-size:11px">DATABASE_URL=file:…</span> : la base « fichier » est réservée au développement local. En production, seule une URL <b>libsql://</b> avec son jeton garantit la persistance des données entre les déploiements.</div>
+
+  <div class="sub-title">2.5 · Après le premier déploiement</div>
+  <p class="body-text">La base Turso livrée est vide : procédez à l'initialisation dans cet ordre. Créez d'abord le <strong>compte administrateur</strong> via l'inscription normale (le code d'activation arrive alors par e-mail si le SMTP est déjà configuré, sinon en mode démonstration le temps de la configuration). Ouvrez ensuite <strong>Paramètres → E-mail</strong> et enregistrez la configuration d'envoi depuis l'environnement de production : l'e-mail de test est alors envoyé avec les mêmes réglages que vos utilisateurs. Enfin, effectuez une <strong>inscription complète de bout en bout</strong> (création de compte, code reçu par e-mail, création d'un projet, export du dossier) pour valider la chaîne entière.</p>
+  <p class="body-text">À noter : les documents générés en production suivent exactement les conventions retenues (Times New Roman, corps 12, interligne 1,5, séparateur de milliers « . »), et le module de validation bloque l'impression définitive des projets non validés, comme en local. Le domaine personnalisé (ex. <code>gescomdigital.services</code>) s'ajoute plus tard dans « Settings → Domains » de Vercel, puis chez votre registrar avec les enregistrements DNS proposés.</p>
+
+  <div class="sub-title">2.6 · Dépannage du déploiement</div>
+  <table class="tbl">
+    <thead><tr><th style="width:33%">Symptôme</th><th style="width:30%">Cause probable</th><th>Solution</th></tr></thead>
+    <tbody>
+      <tr><td>Le déploiement échoue à la compilation</td><td>Erreur introduite par une modification récente</td><td>Lancer <span class="mono">npm run build</span> en local : l'erreur reproduite est plus facile à lire que dans les logs Vercel</td></tr>
+      <tr><td>Erreur 500 sur toutes les pages</td><td>Base inaccessible : DATABASE_URL sans préfixe libsql:// ou jeton manquant/expiré</td><td>Corriger les deux variables dans Vercel, puis redéployer</td></tr>
+      <tr><td>Les données disparaissent après un redéploiement</td><td>Un fichier SQLite est encore utilisé en production</td><td>Basculer sur Turso (2.2) et repousser le schéma, puis migrer les données utiles</td></tr>
+      <tr><td>Première requête très lente</td><td>Fonction serveur « froide » au démarrage</td><td>Comportement normal de l'offre gratuite ; les requêtes suivantes sont rapides</td></tr>
+      <tr><td>Codes d'activation non reçus en production</td><td>SMTP configuré en local mais pas dans l'environnement Vercel</td><td>Enregistrer la configuration depuis l'interface administrateur (elle est conservée en base, donc partagée par tous les environnements)</td></tr>
+      <tr><td>« P5001: Can't reach database server »</td><td>Jeton Turso invalide ou base en pause</td><td>Régénérer le jeton dans Turso et mettre à jour DATABASE_AUTH_TOKEN</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">2.7 · Checklist finale de mise en service</div>
+  <p class="body-text">Cochez chaque point dans l'ordre : lorsque tous sont validés, GESCOM PROJECT fonctionne en production réelle — inscriptions authentiques, codes livrés par e-mail, données persistantes et dossiers exportables.</p>
+  <div class="check-row"><div class="check-box"></div><div class="check-txt"><b>E-mail de test reçu</b> — hors spam, depuis Paramètres → E-mail (section 1.2).</div></div>
+  <div class="check-row"><div class="check-box"></div><div class="check-txt"><b>Bandeau « mode démonstration » disparu</b> — les envois sont réels (section 1.1).</div></div>
+  <div class="check-row"><div class="check-box"></div><div class="check-txt"><b>Inscription réelle testée</b> — code d'activation reçu par e-mail (section 1.6).</div></div>
+  <div class="check-row"><div class="check-box"></div><div class="check-txt"><b>Base Turso créée et schéma appliqué</b> — tables visibles dans la console (section 2.2).</div></div>
+  <div class="check-row"><div class="check-box"></div><div class="check-txt"><b>Variables définies sur Vercel</b> — DATABASE_URL (libsql://) et jeton (section 2.4).</div></div>
+  <div class="check-row"><div class="check-box"></div><div class="check-txt"><b>Déploiement terminé avec succès</b> — page de connexion affichée (section 2.3).</div></div>
+  <div class="check-row"><div class="check-box"></div><div class="check-txt"><b>SMTP configuré en production</b> — enregistré depuis l'interface admin (section 2.5).</div></div>
+  <div class="check-row"><div class="check-box"></div><div class="check-txt"><b>Parcours complet validé de bout en bout</b> — projet créé et dossier exporté (section 2.5).</div></div>
+
+</div>
+
+<!-- ============================ FIN ============================ -->
+<div class="ending">
+  <div class="ending-inner">
+    <div class="g-mark">G</div>
+    <h2>Votre plateforme est <em>prête pour la production</em></h2>
+    <p>Avec l'envoi réel des e-mails et un déploiement Vercel adossé à une base Turso, GESCOM PROJECT passe en exploitation complète : inscriptions réelles, codes d'activation livrés dans les boîtes mail, données persistantes et dossiers exportables aux conventions retenues.</p>
+    <p>Ce guide accompagne les fonctionnalités déjà intégrées à la plateforme : validation automatique des projets (VAN, TRI, IP), confirmation « Terminé » réservée aux projets entièrement conformes, abonnements Free et Premium, et générateur de documents PDF, Word, Excel et PowerPoint.</p>
+  </div>
+  <div class="ending-foot">
+    <div>GESCOM PROJECT · Guide de mise en production · Édition novembre 2026</div>
+    <div>De l'idée au dossier finançable</div>
+  </div>
+</div>
+
+</body>
+</html>
